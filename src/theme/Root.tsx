@@ -1,12 +1,11 @@
 // src/theme/Root.tsx
-import React from 'react';
-import BottomNav from '@site/src/components/BottomNav';
+import BottomNav from "@/components/BottomNav";
 
 export default function Root({ children }) {
-    return (
-        <>
-            {children}
-            <BottomNav />
-        </>
-    );
+  return (
+    <>
+      {children}
+      <BottomNav />
+    </>
+  );
 }

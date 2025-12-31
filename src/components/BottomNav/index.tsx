@@ -1,25 +1,36 @@
 // src/components/BottomNav/index.tsx
-import React from 'react';
-import Link from '@docusaurus/Link';
-import styles from './styles.module.css';
+import Link from "@docusaurus/Link";
+import { Coffee, Home } from "lucide-react";
+import React from "react";
+import styles from "./styles.module.css";
 
-// Puedes usar emojis o importar iconos SVG
-const navItems = [
-    { label: 'Inicio', to: '/', icon: '🏠' },
-    { label: 'Cursos', to: '/docs/introduccion/bienvenida', icon: '📚' },
-    { label: 'Tutoriales', to: '/docs/02-modulo-uno/concepto-basico', icon: '🚀' },
-    { label: 'Donar', to: '/donar', icon: '☕' },
+type NavItem = {
+  label: string;
+  to: string;
+  Icon: React.ComponentType<{ size?: number }>;
+};
+
+const navItems: NavItem[] = [
+  { label: "Inicio", to: "/", Icon: Home },
+  // { label: "Cursos", to: "/docs/introduccion/bienvenida", Icon: BookOpen },
+  // {label: "Tutoriales",to: "/docs/02-modulo-uno/concepto-basico",Icon: Rocket,},
+  { label: "Donar", to: "/donar", Icon: Coffee },
 ];
 
 export default function BottomNav() {
-    return (
-        <nav className={styles.bottomNav}>
-            {navItems.map((item, idx) => (
-                <Link key={idx} to={item.to} className={styles.navItem} activeClassName={styles.active}>
-                    <span className={styles.icon}>{item.icon}</span>
-                    <span className={styles.label}>{item.label}</span>
-                </Link>
-            ))}
-        </nav>
-    );
+  return (
+    <nav className={styles.bottomNav} aria-label="Navegación principal">
+      {navItems.map(({ label, to, Icon }) => (
+        <Link
+          key={to}
+          to={to}
+          className={styles.navItem}
+          activeClassName={styles.active}
+        >
+          <Icon size={20} className={styles.icon} aria-hidden />
+          <span className={styles.label}>{label}</span>
+        </Link>
+      ))}
+    </nav>
+  );
 }
